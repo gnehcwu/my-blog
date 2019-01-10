@@ -3,12 +3,10 @@ title: 说说Python 2.x中的super关键字
 date: '2015-12-09'
 ---
 
-# 说说Python 2.x中的super关键字
-
 官方文档中关于[super](https://docs.python.org/2/library/functions.html#super)的定义说的不是很多，大致意思是返回一个代理对象让你能够调用
 一些继承过来的方法，查找的机制遵循mro规则，最常用的情况如下面这个例子所示：
 
-```
+```python
 class C(B):
     def method(self, arg):
         super(C, self).method(arg)
@@ -16,7 +14,7 @@ class C(B):
 子类C重写了父类B中同名方法method，在重写的实现中通过super实例化的代理对象调用父类的同名方法。
 
 super类的初始方法签名如下：
-```
+```python
 def __init__(self, type1, type2=None): # known special case of super.__init__
         """
         super(type, obj) -> bound super object; requires isinstance(obj, type)
@@ -31,7 +29,7 @@ super对象。
 `super(type, obj)`在这种情况下也能够使用，super对象有自定义实现的getattribute方法也能够处理。不过，后者一般用来调用实例方法，这样
 在查找方法的时候能够传入相应的实例，从而得到绑定的实例方法：
 
-```
+```python
 class A(object):
     def __init__(self):
         pass

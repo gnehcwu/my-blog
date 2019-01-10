@@ -1,14 +1,11 @@
 ---
-layout: post
 title: Python 闭包使用中需要注意的地方
 date: '2016-03-15'
 ---
 
-# Python 闭包使用中需要注意的地方
-
 昨天正当我用十成一阳指功力戳键盘、昏天暗地coding的时候，被人问了一个问题，差点没收功好，洪荒之力侧漏而出震伤桌边的人，废话不多说，先上栗子（精简版，只为说明问题）：
 
-```
+```python
 from functools import wraps
 from time import sleep
 
@@ -38,7 +35,7 @@ def retry(attempts=3, wait=2):
 
 python是duck-typing的编程语言，就算有warning照样跑，写个简单到极限的的函数，用一下装饰器，在`wrapped_function`逻辑里打个断点看一下各个变量的值也是很快能找到问题的（直接跑也能看到错误:`UnboundLocalError: local variable 'retry_attempts' referenced before assignment`, 至少比warning msg有用）：
 
-```
+```python
 @retry(7, 8)
 def test():
     print 23333
@@ -52,7 +49,7 @@ output: UnboundLocalError: local variable 'retry_times' referenced before assign
 
 要解决这种问题也好办，用一个可变的容器把要用的不可变类型的数据包装一下就行了(说个好久没写C#代码记不太清楚完全不负责任的题外话，就像在C#.net里面，碰到闭包的时候，会自动生成一个混淆过名字的类然后把要被捕捉的值当作类的属性存着，这样在使用的时候就能轻松get，著名的老赵好像有一篇文章讲Lazy Evaluation的好像涉及到这个话题）：
 
-```
+```python
 def retry(attempts=3, wait=2):
     temp_dict = {
         'retry_times': 3 if attempts < 0 or attempts > 5 else attempts,
@@ -98,7 +95,7 @@ if __name__ == '__main__':
 
 从output中可以看到，用dict包装后，程序能够正常的工作，和预期的一致，其实我们也可以从函数的闭包的值再次确认：
 
-```
+```python
 >>> test.func_closure[1].cell_contents
 {'retry_wait': 2, 'retry_times': 2}
 ```

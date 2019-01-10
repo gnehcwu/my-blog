@@ -3,9 +3,6 @@ title: Python __getattribute__ vs __getattr__
 date: '2015-12-09 11:09'
 ---
 
-# Python __getattribute__ vs __getattr__ 浅谈
-
-
 相信大家看到这个标题的时候也会立马在脑海里面过一遍，觉得大多数时候我们并不太需要关注`getattribute`和`getattr`的一些细节（至少我自己吧:))，
 一般情况下消费我们自定义的类的时候，我们类的结构都了解，不会刻意偏离，造成一些属性访问的错误。
 
@@ -13,7 +10,7 @@ date: '2015-12-09 11:09'
 [sinaweibopy](https://github.com/michaelliao/sinaweibopy/blob/master/weibo.py#L307)的源码才看的，代码挺有意思，正好当作一个实用的例子，
 来看看如何自定义实现`gettattr`让代码更加的动态优雅：
 
-```
+```python
 # 例子在原来的基础上简化了一下，排除依赖和干扰，详细参见原项目
 class UrlGenerator(object):
     def __init__(self, root_url):
@@ -41,7 +38,7 @@ url_gen.users.show.get
 自己getattr方法的话，方法会在这种找不到属性的情况下被调用，比如上面的例子中的情况。所以在找不到属性的情况下通过实现自定义的getattr方
 法来实现一些功能是一个不错的方式，因为它不会像getattribute方法每次都会调用可能会影响一些正常情况下的属性访问：
 
-```
+```python
 class Test(object):
     def __init__(self, p):
         self.p = p
@@ -61,7 +58,7 @@ print t.p2
 因为getattribute在访问属性的时候一直会被调用，自定义的getattribute方法里面同时需要返回相应的属性，通过`self.__dict__`取值会继续向下
 调用getattribute，造成循环调用：
 
-```
+```python
 class AboutAttr(object):
     def __init__(self, name):
         self.name = name
@@ -78,7 +75,7 @@ class AboutAttr(object):
 
 #### 3.同时覆盖掉getattribute和getattr的时候，在getattribute中需要模仿原本的行为抛出AttributeError或者手动调用getattr
 
-```
+```python
 class AboutAttr(object):
     def __init__(self, name):
         self.name = name

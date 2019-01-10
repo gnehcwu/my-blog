@@ -2,13 +2,12 @@
 title: Python mixin模式
 date: '2015-10-24'
 ---
-# Python mixin模式
 
 Mixin模式是一种在python里经常使用的模式，适当合理的应用能够达到复用代码，合理组织代码结构的目的。
 
 Python的Mixin模式可以通过`多继承`的方式来实现, 举例来说，我们自定义一个简单的具有嵌套结构的数据容器：
 
-```
+```python
 class SimpleItemContainer(object):
     def __init__(self, id, item_containers):
         self.id = id
@@ -19,7 +18,7 @@ class SimpleItemContainer(object):
 
 `SimpleItemContainer`通过python内置类型`Dict`来存放数据，不过到目前为止想要访问对应的数据还是得直接调用里面的字典，没法像原生的字典一样方便的通过暴露出来的api访问数据。当然也可以从头开始把完整的`Dictionary Interface`完全实现个遍，不过在每个自定义的类似的容器中都来一套肯定不行，这时候利用python内置的[UserDict.DictMixin](https://docs.python.org/2/library/userdict.html#UserDict.DictMixin)就是一个不错的方式：
 
-```
+```python
 from UserDict import DictMixin
 
 class BetterSimpleItemContainer(object, DictMixin):
@@ -41,7 +40,7 @@ class BetterSimpleItemContainer(object, DictMixin):
 
 当然，Mixin模式也不能滥用，至少他会污染你新定义的类，有时候还会带来MRO的问题；不过把一些基础和单一的功能比如一般希望通过`interface/protocol`实现的功能放进Mixin模块里面还是不错的选择：
 
-```
+```python
 class CommonEqualityMixin(object):
 
     def __eq__(self, other):
@@ -58,5 +57,3 @@ class Foo(CommonEqualityMixin):
 ```
 
 其实整个理解下来无非就是通过组合的方式获得更多的功能,有点像C\#， java里面的interface，强调“it can”的意思，但相比起来简单多了，不需要显示的约束，而且mixin模块自带实现。在使用的时候一般把mixin的类放在父类的右边似乎也是为了强调这`并不是典型的多继承，是一种特殊的多继承`，而是在继承了一个基类的基础上，顺带利用多重继承的功能给这个子类添点料，增加一些其他的功能。保证Mixin的类功能单一具体，混入之后，新的类的MRO树其实也会相对很简单，并不会引起混乱。
-
-
