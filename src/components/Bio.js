@@ -10,6 +10,7 @@ function Bio() {
       query={bioQuery}
       render={data => {
         const { author, social } = data.site.siteMetadata
+        console.log(data);
         return (
           <div
             style={{
@@ -27,12 +28,11 @@ function Bio() {
                 borderRadius: `100%`,
               }}
             />
-            <p>
-              Written by <strong>{author}</strong> who lives and works in San
-              Francisco building useful things.
+            <p style={{lineHeight: '50px'}}>
+              Find me on
               {` `}
-              <a href={`https://twitter.com/${social.twitter}`}>
-                You should follow him on Twitter
+              <a href={`https://github.com/${social.github}`} target={'_blank'}>
+                Github
               </a>
             </p>
           </div>
@@ -55,7 +55,7 @@ const bioQuery = graphql`
       siteMetadata {
         author
         social {
-          twitter
+          github
         }
       }
     }
