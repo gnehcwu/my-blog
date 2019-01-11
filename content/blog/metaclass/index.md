@@ -146,7 +146,7 @@ in call method
 参考资料中的链接里面有有几个实际的例子，本文也是学习其中的内容后配合一些其它一些使用经验以及碰到的问题理而成，希望对大家有用。
 
 
-参考资料：
+**参考资料：**
 
 >[Python metaclasses by example](http://eli.thegreenplace.net/2011/08/14/python-metaclasses-by-example)
 

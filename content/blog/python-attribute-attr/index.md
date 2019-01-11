@@ -1,6 +1,6 @@
 ---
-title: Python __getattribute__ vs __getattr__
-date: '2015-12-09 11:09'
+title: Python getattribute vs getattr
+date: '2015-12-09'
 ---
 
 相信大家看到这个标题的时候也会立马在脑海里面过一遍，觉得大多数时候我们并不太需要关注`getattribute`和`getattr`的一些细节（至少我自己吧:))，
@@ -105,6 +105,8 @@ print at.not_exised
 关于getattribute和getattr的特性与区别就扯到这，要更深入的了解可以自行google，
 [编写高质量代码:改善Python程序的91个建议](http://book.douban.com/subject/25910544/)这本书里面也有一些详细的介绍。
 
+
+**参考资料：**
 
 > python doc: https://docs.python.org/2/reference/datamodel.html#object.__getattr__
 

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import 'prismjs/themes/prism.css'
 
 import { rhythm, scale } from '../utils/typography'
-import 'prismjs/themes/prism-tomorrow.css'
 
 class Layout extends React.Component {
   render() {
@@ -57,17 +57,17 @@ class Layout extends React.Component {
         style={{
           marginLeft: `auto`,
           marginRight: `auto`,
-          maxWidth: rhythm(24),
+          maxWidth: rhythm(33),
           padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
         }}
       >
         {header}
         {children}
         <footer>
-          © {new Date().getFullYear()}, >_ with with love by
+          © {new Date().getFullYear()} <strong>>_</strong> with with love by
           {` `}
           <a href={`https://github.com/gnehcc`} target={'_blank'}>
-            Cheng
+            Cheng#GitHub
           </a>
         </footer>
       </div>

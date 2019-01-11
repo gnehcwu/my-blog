@@ -1,9 +1,9 @@
 ---
-title: Python 闭包使用中需要注意的地方
+title: Python 闭包问题小结
 date: '2016-03-15'
 ---
 
-昨天正当我用十成一阳指功力戳键盘、昏天暗地coding的时候，被人问了一个问题，差点没收功好，洪荒之力侧漏而出震伤桌边的人，废话不多说，先上栗子（精简版，只为说明问题）：
+昨天上班整昏天暗地coding的时候，被人问了一个问题古怪却又经典的涉及闭包概念的问题，觉得还是值得总结一下。废话不多说，先上栗子（精简版，只为说明问题）：
 
 ```python
 from functools import wraps
@@ -31,7 +31,7 @@ def retry(attempts=3, wait=2):
     return retry_decorator
 ```
 
-简易版的`retry`装饰器，需要的变量被闭包完美捕捉，逻辑也挺简单明了。问的人说逻辑看着挺正常的，但就是一直报变量`retry_times`找不到（`unresolved reference`)的错误提示。这是为什么呢，相信看过撸主上篇文章[正确使用Python可选参数](http://www.jianshu.com/p/2b4f71a9f978)(标题写的有点打有点扯，见谅）的童鞋应该很快能反应过来。没错仔细捋一下，这是一道送分题呢：闭包捕获的变量（`retry_times，retry_wait`）相当时引用的`retry`函数的局部变量，当在`wrapped_function`的局部作用于里面操作不可变类型的数据时，会生成新的局部变量，但是新生成的局部变量`retry_times`在使用时还没来得及初始化，因此会提示找不到变量；`retry_wait`相反能被好好的使用到。
+简易版的`retry`装饰器，需要的变量被闭包完美捕捉，逻辑也挺简单明了。问的人说逻辑看着挺正常的，但就是一直报变量`retry_times`找不到（`unresolved reference`)的错误提示。这是为什么呢，相信看过撸主上篇文章正确使用Python可选参数(标题写的有点打有点扯，见谅）的童鞋应该很快能反应过来。没错仔细捋一下，这是一道送分题呢：闭包捕获的变量（`retry_times，retry_wait`）相当时引用的`retry`函数的局部变量，当在`wrapped_function`的局部作用于里面操作不可变类型的数据时，会生成新的局部变量，但是新生成的局部变量`retry_times`在使用时还没来得及初始化，因此会提示找不到变量；`retry_wait`相反能被好好的使用到。
 
 python是duck-typing的编程语言，就算有warning照样跑，写个简单到极限的的函数，用一下装饰器，在`wrapped_function`逻辑里打个断点看一下各个变量的值也是很快能找到问题的（直接跑也能看到错误:`UnboundLocalError: local variable 'retry_attempts' referenced before assignment`, 至少比warning msg有用）：
 
@@ -100,10 +100,10 @@ if __name__ == '__main__':
 {'retry_wait': 2, 'retry_times': 2}
 ```
 
-我是结尾，PEACE!
+This is the ending，PEACE!
 
 
-> 参考资料：
+**参考资料：**
 
 > http://stackoverflow.com/questions/986006/how-do-i-pass-a-variable-by-reference
 
