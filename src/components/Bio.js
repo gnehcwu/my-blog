@@ -32,7 +32,7 @@ function Bio() {
               Find me on
               {` `}
               <a href={`https://github.com/${social.github}`} target={'_blank'}>
-                Github
+                GitHub
               </a>
             </p>
           </div>

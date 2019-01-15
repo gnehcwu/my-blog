@@ -6,7 +6,7 @@ date: '2016-03-10'
 
 Python通过Collections模块提供了不少好用的数据容器类型，其中一个精品当属`namedtuple`。
 
-`namedtuple`能够用来创建类似于元祖的数据类型，除了能够用索引来访问数据，能够迭代，更能够方便的通过属性名来访问数据：
+`namedtuple`能够用来创建类似于元组的数据类型，除了能够用索引来访问数据，能够迭代，更能够方便的通过属性名来访问数据：
 
 ```python
 >>> from collections import namedtuple
