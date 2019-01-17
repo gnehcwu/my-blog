@@ -1,1 +1,0 @@
-Personal blog, just for recording thoughts or learning notes.
