@@ -5,8 +5,8 @@ import Bio from '../components/Bio'
 import Layout from '../components/Layout'
 import SEO from '../components/seo'
 import { rhythm, scale } from '../utils/typography'
-// import { DiscussionEmbed } from 'disqus-react'
-import { Disqus } from '../components/disqus'
+// import { Disqus } from '../components/disqus'
+import { DiscussionEmbed } from 'disqus-react'
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -17,7 +17,7 @@ class BlogPostTemplate extends React.Component {
     const disqusConfig = {
       identifier: post.id,
       title: post.frontmatter.title,
-      url: this.props.pageContext.slug
+      url: this.props.location.href
     }
 
     return (
@@ -66,8 +66,8 @@ class BlogPostTemplate extends React.Component {
             )}
           </li>
         </ul>
-        {/* <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} /> */}
-        <Disqus shortName={disqusShortname} config={disqusConfig} />
+        <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
+        {/* <Disqus shortName={disqusShortname} config={disqusConfig} /> */}
       </Layout>
     )
   }

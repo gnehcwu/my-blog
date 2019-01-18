@@ -3,7 +3,7 @@ module.exports = {
     title: `Cheng's Blog`,
     author: `Cheng`,
     description: `A blog just for recording something.`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    siteUrl: `https://gnehc.me`,
     social: {
       github: `gnehcc`,
     },
@@ -57,8 +57,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
+        name: `Blog by Cheng`,
+        short_name: `Blog by Cheng`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#663399`,
