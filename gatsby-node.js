@@ -40,7 +40,9 @@ exports.createPages = ({ graphql, actions }) => {
         reject(result.errors)
       }
 
-      _.each(result.data.allMarkdownRemark.edges, edge => {
+      const posts = result.data.allMarkdownRemark.edges
+
+      _.each(posts, edge => {
         if (_.get(edge, 'node.frontmatter.layout') === 'page') {
           createPage({
             path: edge.node.fields.slug,
@@ -84,6 +86,23 @@ exports.createPages = ({ graphql, actions }) => {
             })
           })
         }
+      })
+
+      // Create blog post list pages
+      const postsPerPage = 5
+      const numPages = Math.ceil(posts.length / postsPerPage)
+
+      Array.from({ length: numPages }).forEach((__, i) => {
+        createPage({
+          path: i === 0 ? '/' : `/${i + 1}`,
+          component: path.resolve('./src/pages/index.jsx'),
+          context: {
+            limit: postsPerPage,
+            skip: i * postsPerPage,
+            numPages,
+            currentPage: i + 1,
+          },
+        })
       })
 
       resolve()
