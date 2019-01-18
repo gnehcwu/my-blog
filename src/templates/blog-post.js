@@ -5,7 +5,6 @@ import Bio from '../components/Bio'
 import Layout from '../components/Layout'
 import SEO from '../components/seo'
 import { rhythm, scale } from '../utils/typography'
-// import { DiscussionEmbed } from 'disqus-react'
 import { Disqus } from '../components/disqus'
 
 class BlogPostTemplate extends React.Component {

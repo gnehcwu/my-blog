@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import 'prismjs/themes/prism.css'
+import 'prismjs/themes/prism-tomorrow.css'
 
 import { rhythm, scale } from '../utils/typography'
 
@@ -8,9 +8,15 @@ class Layout extends React.Component {
   render() {
     const { location, title, children } = this.props
     const rootPath = `${__PATH_PREFIX__}/`
+    const isRootPath = location.pathname === `${__PATH_PREFIX__}/`
     let header
+    const pageNumber = location.pathname
+      .split('/')
+      .filter(Boolean)
+      .pop()
+    const isPaginatedPath = pageNumber && Boolean(pageNumber.match(/^[0-9]+$/))
 
-    if (location.pathname === rootPath) {
+    if (isRootPath || isPaginatedPath) {
       header = (
         <h1
           style={{
