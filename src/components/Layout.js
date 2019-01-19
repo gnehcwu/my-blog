@@ -3,11 +3,12 @@ import { Link } from 'gatsby'
 import 'prismjs/themes/prism-tomorrow.css'
 
 import { rhythm, scale } from '../utils/typography'
+import { Span } from 'opentracing'
+import Sift from 'sift';
 
 class Layout extends React.Component {
   render() {
     const { location, title, children } = this.props
-    const rootPath = `${__PATH_PREFIX__}/`
     const isRootPath = location.pathname === `${__PATH_PREFIX__}/`
     let header
     const pageNumber = location.pathname
@@ -16,48 +17,6 @@ class Layout extends React.Component {
       .pop()
     const isPaginatedPath = pageNumber && Boolean(pageNumber.match(/^[0-9]+$/))
 
-    if (isRootPath || isPaginatedPath) {
-      header = (
-        <h1
-          style={{
-            ...scale(1.5),
-            marginBottom: rhythm(1.5),
-            marginTop: 0,
-          }}
-        >
-          <Link
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              color: `inherit`,
-            }}
-            to={`/`}
-          >
-            {title}
-          </Link>
-        </h1>
-      )
-    } else {
-      header = (
-        <h3
-          style={{
-            fontFamily: `Montserrat, sans-serif`,
-            marginTop: 0,
-          }}
-        >
-          <Link
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              color: `inherit`,
-            }}
-            to={`/`}
-          >
-            {title}
-          </Link>
-        </h3>
-      )
-    }
     return (
       <div
         style={{
@@ -67,13 +26,19 @@ class Layout extends React.Component {
           padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
         }}
       >
-        {header}
         {children}
-        <footer>
-          © {new Date().getFullYear()} <strong>>_</strong> with with love by
+        <footer
+          style={{
+            marginTop: rhythm(3.3),
+            textAlign: `center`,
+            fontFamily: `monospace`,
+            fontSize: rhythm(1)
+          }}
+        >
+          © {new Date().getFullYear()} <strong>>_</strong> with love by
           {` `}
           <a href={`https://github.com/gnehcc`} target={'_blank'}>
-            Cheng#GitHub
+            CHENG
           </a>
         </footer>
       </div>

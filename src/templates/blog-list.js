@@ -21,7 +21,7 @@ class BlogIndex extends React.Component {
       <Layout location={this.props.location} title={siteTitle}>
         <SEO
           title="All posts"
-          keywords={[`blog`, `gatsby`, `javascript`, `react`]}
+          keywords={[`blog`, `gatsby`, `javascript`, `react`, `python`, `coding skills`, `programming`, `technology`]}
         />
         <Bio />
         {posts.map(({ node }) => {
@@ -31,6 +31,7 @@ class BlogIndex extends React.Component {
               <h3
                 style={{
                   marginBottom: rhythm(1 / 4),
+                  fontWeight: 200,
                 }}
               >
                 <Link style={{ boxShadow: 'none' }} to={node.fields.slug}>
@@ -38,7 +39,25 @@ class BlogIndex extends React.Component {
                 </Link>
               </h3>
               <small>{node.frontmatter.date}</small>
-              <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
+              <p style={{
+                marginBottom: rhythm(0.5),
+              }} dangerouslySetInnerHTML={{ __html: node.excerpt }} />
+              <p style={{
+                fontSize: rhythm(0.8)
+              }}>
+                <Link
+                  to={node.fields.slug}
+                  style={{
+                    textDecoration: 'none',
+                    boxShadow: 'none',
+                    color: '#ffffff',
+                    background: '#007acc',
+                    padding: `0px 25px`
+                  }}
+                >
+                  <strong>👉</strong>
+                </Link>
+              </p>
             </div>
           )
         })}

@@ -5,7 +5,6 @@ import Bio from '../components/Bio'
 import Layout from '../components/Layout'
 import SEO from '../components/seo'
 import { rhythm, scale } from '../utils/typography'
-// import { Disqus } from '../components/disqus'
 import { DiscussionEmbed } from 'disqus-react'
 
 class BlogPostTemplate extends React.Component {
@@ -23,7 +22,10 @@ class BlogPostTemplate extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title={post.frontmatter.title} description={post.excerpt} />
-        <h1>{post.frontmatter.title}</h1>
+        <Bio />
+        <h1 style={{
+          fontWeight: 300,
+        }}>{post.frontmatter.title}</h1>
         <p
           style={{
             ...scale(-1 / 5),
@@ -40,7 +42,6 @@ class BlogPostTemplate extends React.Component {
             marginBottom: rhythm(1),
           }}
         />
-        <Bio />
 
         <ul
           style={{
@@ -67,7 +68,6 @@ class BlogPostTemplate extends React.Component {
           </li>
         </ul>
         <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
-        {/* <Disqus shortName={disqusShortname} config={disqusConfig} /> */}
       </Layout>
     )
   }
