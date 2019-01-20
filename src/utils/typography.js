@@ -8,6 +8,12 @@ Wordpress2016.overrideThemeStyles = () => {
     },
     'ul, ol': {
       marginLeft: '1.75rem'
+    },
+    'h3': {
+      fontWeight: 300
+    },
+    'a': {
+      color: `black`
     }
   }
 }

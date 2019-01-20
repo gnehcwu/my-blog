@@ -18,6 +18,7 @@ class Layout extends React.Component {
     const isPaginatedPath = pageNumber && Boolean(pageNumber.match(/^[0-9]+$/))
 
     return (
+      <div>
       <div
         style={{
           marginLeft: `auto`,
@@ -27,21 +28,30 @@ class Layout extends React.Component {
         }}
       >
         {children}
-        <footer
+      </div>
+      <footer
           style={{
-            marginTop: rhythm(3.3),
+            marginTop: rhythm(1.3),
+            marginBottom: rhythm(1.5),
+            paddingTop: rhythm(0.7),
             textAlign: `center`,
             fontFamily: `monospace`,
-            fontSize: rhythm(1)
+            fontSize: rhythm(0.75),
+            borderTop: `1px solid #eee`,
           }}
         >
-          © {new Date().getFullYear()} <strong>>_</strong> with love by
-          {` `}
-          <a href={`https://github.com/gnehcc`} target={'_blank'}>
-            CHENG
-          </a>
+          <p style={{
+            marginBottom: 0,
+          }}>© {new Date().getFullYear()} All rights reserved</p>
+          <p>
+            <strong>>_</strong> with love by
+            {` `}
+            <a href={`https://github.com/gnehcc`} target={'_blank'}>
+              CHENG
+            </a>
+          </p>
         </footer>
-      </div>
+        </div>
     )
   }
 }

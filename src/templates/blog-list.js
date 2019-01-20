@@ -43,7 +43,7 @@ class BlogIndex extends React.Component {
                 marginBottom: rhythm(0.5),
               }} dangerouslySetInnerHTML={{ __html: node.excerpt }} />
               <p style={{
-                fontSize: rhythm(0.8)
+                marginTop: rhythm(-0.33),
               }}>
                 <Link
                   to={node.fields.slug}
@@ -51,11 +51,13 @@ class BlogIndex extends React.Component {
                     textDecoration: 'none',
                     boxShadow: 'none',
                     color: '#ffffff',
-                    background: '#007acc',
-                    padding: `0px 25px`
+                    background: 'black',
+                    padding: `5px 15px`,
+                    fontSize: rhythm(0.45),
+                    fontWeight: 200
                   }}
                 >
-                  <strong>👉</strong>
+                  Read More →
                 </Link>
               </p>
             </div>
@@ -69,6 +71,7 @@ class BlogIndex extends React.Component {
             alignItems: 'center',
             listStyle: 'none',
             padding: 0,
+            marginTop: `4.3rem`,
           }}
         >
           {!isFirst && (
@@ -101,7 +104,9 @@ class BlogIndex extends React.Component {
                   textDecoration: 'none',
                   boxShadow: 'none',
                   color: i + 1 === currentPage ? '#ffffff' : '',
-                  background: i + 1 === currentPage ? '#007acc' : '',
+                  // background: i + 1 === currentPage ? '#007acc' : '',
+                  background: i + 1 === currentPage ? 'black' : '',
+                  backgroundColor: i + 1 === currentPage ? `hsla(0,0%,0%,0.95)` : '',
                 }}
               >
                 {i + 1}
@@ -145,7 +150,7 @@ export const pageQuery = graphql`
     ) {
       edges {
         node {
-          excerpt(pruneLength: 333)
+          excerpt(pruneLength: 233)
           fields {
             slug
           }

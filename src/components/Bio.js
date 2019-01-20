@@ -16,6 +16,7 @@ function Bio() {
               display: `flex`,
               marginBottom: rhythm(2.5),
               justifyContent: `space-between`,
+              borderBottom: `1px solid #eee`
             }}
           >
             <div>

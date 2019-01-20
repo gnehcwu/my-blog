@@ -23,9 +23,9 @@ class BlogPostTemplate extends React.Component {
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title={post.frontmatter.title} description={post.excerpt} />
         <Bio />
-        <h1 style={{
+        <h3 style={{
           fontWeight: 300,
-        }}>{post.frontmatter.title}</h1>
+        }}>{post.frontmatter.title}</h3>
         <p
           style={{
             ...scale(-1 / 5),
