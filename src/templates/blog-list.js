@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
+import Image from 'gatsby-image'
 
 import SEO from '../components/seo'
 import Bio from '../components/Bio'
@@ -38,12 +39,44 @@ class BlogIndex extends React.Component {
                   {title}
                 </Link>
               </h3>
-              <small>{node.frontmatter.date}</small>
+              <div style={{
+                display: `flex`,
+                alignItems: `center`,
+                marginBottom: `1rem`,
+                marginTop: `1rem`
+              }}>
+              <Image
+                fixed={data.avatar.childImageSharp.fixed}
+                // alt={author}
+                style={{
+                  marginRight: rhythm(1 / 2),
+                  marginBottom: 0,
+                  minWidth: 27,
+                  borderRadius: `100%`
+                }}
+                imgStyle={{
+                  borderRadius: `50%`,
+                  marginBottom: 0
+                }}
+              />
+              <span style={{
+                fontSize: `0.75rem`,
+                color: `#9EABB3`
+              }}>
+              Cheng Wu
+              </span>
+              <span style={{
+                borderLeft: `solid 1px #80808096`,
+                paddingLeft: `1rem`,
+                marginLeft: `1rem`,
+                fontSize: `0.75rem`,
+                color: `#9EABB3`
+              }}>{node.frontmatter.date}</span>
+              </div>
               <p style={{
                 marginBottom: rhythm(0.5),
               }} dangerouslySetInnerHTML={{ __html: node.excerpt }} />
               <p style={{
-                marginTop: rhythm(-0.33),
               }}>
                 <Link
                   to={node.fields.slug}
@@ -54,7 +87,7 @@ class BlogIndex extends React.Component {
                     background: 'black',
                     padding: `5px 15px`,
                     fontSize: rhythm(0.45),
-                    fontWeight: 200
+                    fontWeight: 200,
                   }}
                 >
                   Read More →
@@ -138,9 +171,17 @@ export default BlogIndex
 
 export const pageQuery = graphql`
   query blogPageQuery($skip: Int!, $limit: Int!) {
+    avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
+      childImageSharp {
+        fixed(width: 27, height: 27) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
     site {
       siteMetadata {
         title
+        author
       }
     }
     allMarkdownRemark(

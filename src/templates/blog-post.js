@@ -16,16 +16,20 @@ class BlogPostTemplate extends React.Component {
     const disqusConfig = {
       identifier: post.id,
       title: post.frontmatter.title,
-      url: this.props.location.href
+      url: this.props.location.href,
     }
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title={post.frontmatter.title} description={post.excerpt} />
         <Bio />
-        <h3 style={{
-          fontWeight: 300,
-        }}>{post.frontmatter.title}</h3>
+        <h3
+          style={{
+            fontWeight: 300,
+          }}
+        >
+          {post.frontmatter.title}
+        </h3>
         <p
           style={{
             ...scale(-1 / 5),
@@ -50,22 +54,70 @@ class BlogPostTemplate extends React.Component {
             justifyContent: `space-between`,
             listStyle: `none`,
             padding: 0,
+            marginLeft: 0,
           }}
         >
-          <li>
-            {previous && (
+          {previous && (<li style={{
+            backgroundColor: `rgb(245, 248, 250)`,
+            flexGrow: 1,
+            flexBasis: 0,
+            padding: `30px 30px`,
+            minWidth: `15rem`
+          }}>
+
               <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
+                <p style={{
+                  textAlign: `center`,
+                  color: `grey`,
+                  marginBottom: `0.75rem`,
+                }}> <span style={{
+                  border: `solid 1px #80808096`,
+                  borderRadius: `5px`,
+                  padding: `5px 20px`,
+                  fontFamily: `monspace`
+                  }}>PREV</span></p>
+                <p style={{
+                  color: `grey`,
+                  textAlign: `center`,
+                  marginBottom: `0.5rem`
+                }}>{previous.frontmatter.title}</p>
+                <div style={{
+                  color: `grey`,
+                }} dangerouslySetInnerHTML={{ __html: previous.excerpt }} />
               </Link>
-            )}
-          </li>
-          <li>
-            {next && (
+
+          </li>)}
+          {next && (<li style={{
+            backgroundColor: `rgb(245, 248, 250)`,
+            flexGrow: 1,
+            flexBasis: 0,
+            borderLeft: `solid 1px #eee`,
+            padding: `30px 30px`,
+            minWidth: `15rem`
+          }}>
               <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
+              <p style={{
+                color: `#eee`,
+                textAlign: `center`,
+                color: `grey`,
+                marginBottom: `0.75rem`,
+              }}><span style={{
+                border: `solid 1px #80808096`,
+                borderRadius: `5px`,
+                padding: `5px 20px`,
+                fontFamily: `monspace`
+              }}>NEXT</span></p>
+                <p style={{
+                  textAlign: `center`,
+                  marginBottom: `0.5rem`,
+                  color: `grey`,
+                }}>{next.frontmatter.title}</p>
+                <div style={{
+                  color: `grey`,
+                }} dangerouslySetInnerHTML={{ __html: next.excerpt }} />
               </Link>
-            )}
           </li>
+          )}
         </ul>
         <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
       </Layout>
