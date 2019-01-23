@@ -17,7 +17,7 @@ exports.createPages = ({ graphql, actions }) => {
               fields {
                 slug
               }
-              excerpt(pruneLength: 180)
+              excerpt(truncate: true)
               html
               frontmatter {
                 title

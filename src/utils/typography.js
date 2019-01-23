@@ -14,7 +14,22 @@ Wordpress2016.overrideThemeStyles = () => {
     },
     'a': {
       color: `black`
-    }
+    },
+    'h1': {
+      textTransform: 'none'
+    },
+    'h2': {
+      textTransform: 'none'
+    },
+    'h3': {
+      textTransform: 'none'
+    },
+    'h4': {
+      textTransform: 'none'
+    },
+    'h5': {
+      textTransform: 'none'
+    },
   }
 }
 

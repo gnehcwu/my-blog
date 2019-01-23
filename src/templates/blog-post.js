@@ -23,13 +23,9 @@ class BlogPostTemplate extends React.Component {
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title={post.frontmatter.title} description={post.excerpt} />
         <Bio />
-        <h3
-          style={{
-            fontWeight: 300,
-          }}
-        >
+        <h2>
           {post.frontmatter.title}
-        </h3>
+        </h2>
         <p
           style={{
             ...scale(-1 / 5),
@@ -61,7 +57,7 @@ class BlogPostTemplate extends React.Component {
             backgroundColor: `rgb(245, 248, 250)`,
             flexGrow: 1,
             flexBasis: 0,
-            padding: `30px 30px`,
+            padding: `3rem`,
             minWidth: `15rem`
           }}>
 
@@ -69,18 +65,19 @@ class BlogPostTemplate extends React.Component {
                 <p style={{
                   textAlign: `center`,
                   color: `grey`,
-                  marginBottom: `0.75rem`,
+                  marginBottom: `0.85rem`,
                 }}> <span style={{
                   border: `solid 1px #80808096`,
                   borderRadius: `5px`,
                   padding: `5px 20px`,
                   fontFamily: `monspace`
                   }}>PREV</span></p>
-                <p style={{
+                <h4 style={{
                   color: `grey`,
                   textAlign: `center`,
-                  marginBottom: `0.5rem`
-                }}>{previous.frontmatter.title}</p>
+                  marginBottom: `0.85rem`,
+                  marginTop: `1.5rem`
+                }}>{previous.frontmatter.title}</h4>
                 <div style={{
                   color: `grey`,
                 }} dangerouslySetInnerHTML={{ __html: previous.excerpt }} />
@@ -92,7 +89,7 @@ class BlogPostTemplate extends React.Component {
             flexGrow: 1,
             flexBasis: 0,
             borderLeft: `solid 1px #eee`,
-            padding: `30px 30px`,
+            padding: `3rem`,
             minWidth: `15rem`
           }}>
               <Link to={next.fields.slug} rel="next">
@@ -100,18 +97,19 @@ class BlogPostTemplate extends React.Component {
                 color: `#eee`,
                 textAlign: `center`,
                 color: `grey`,
-                marginBottom: `0.75rem`,
+                marginBottom: `0.85rem`,
               }}><span style={{
                 border: `solid 1px #80808096`,
                 borderRadius: `5px`,
                 padding: `5px 20px`,
                 fontFamily: `monspace`
               }}>NEXT</span></p>
-                <p style={{
+                <h4 style={{
                   textAlign: `center`,
-                  marginBottom: `0.5rem`,
+                  marginBottom: `0.85rem`,
                   color: `grey`,
-                }}>{next.frontmatter.title}</p>
+                  marginTop: `1.5rem`
+                }}>{next.frontmatter.title}</h4>
                 <div style={{
                   color: `grey`,
                 }} dangerouslySetInnerHTML={{ __html: next.excerpt }} />
