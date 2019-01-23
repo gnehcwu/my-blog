@@ -1,0 +1,41 @@
+.blog-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+  margin-left: 0;
+  margin-top: 3.5rem;
+
+  position: relative;
+  width: 100vw;
+  left: calc(-50vw + 50%);
+}
+
+@media screen and (max-width: 480px) {
+    .next-li {
+        border-left: none;
+    }
+
+    .blog-nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        list-style: none;
+        padding: 0;
+        margin-left: 0;
+        margin-top: 3.5rem;
+
+        position: relative;
+        width: 100vw;
+        left: calc(-50vw + 50%);
+    }
+
+    .blog-nav li {
+        padding: 2rem 1.5rem !important;
+    }
+}
+
+html {
+    overflow-x: hidden;
+}

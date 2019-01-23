@@ -3,7 +3,6 @@ import { Link, graphql } from 'gatsby'
 import Image from 'gatsby-image'
 
 import SEO from '../components/seo'
-import Bio from '../components/Bio'
 import Layout from '../components/Layout'
 import { rhythm } from '../utils/typography'
 
@@ -24,7 +23,6 @@ class BlogIndex extends React.Component {
           title="All posts"
           keywords={[`blog`, `gatsby`, `javascript`, `react`, `python`, `coding skills`, `programming`, `technology`]}
         />
-        <Bio />
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug
           return (
@@ -42,7 +40,7 @@ class BlogIndex extends React.Component {
               <div style={{
                 display: `flex`,
                 alignItems: `center`,
-                marginBottom: `1rem`,
+                marginBottom: `1.5rem`,
                 marginTop: `1rem`
               }}>
               <Image
