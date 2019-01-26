@@ -30,10 +30,13 @@ class BlogIndex extends React.Component {
               <h2
                 style={{
                   marginBottom: rhythm(1 / 4),
-                  fontWeight: 200,
+                  fontWeight: 400,
                 }}
               >
-                <Link style={{ boxShadow: 'none' }} to={node.fields.slug}>
+                <Link style={{
+                  boxShadow: 'none',
+                  color: `rgb(58, 65, 69)`
+                  }} to={node.fields.slug}>
                   {title}
                 </Link>
               </h2>
@@ -82,10 +85,9 @@ class BlogIndex extends React.Component {
                     textDecoration: 'none',
                     boxShadow: 'none',
                     color: '#ffffff',
-                    background: 'black',
+                    background: 'rgb(58, 65, 69)',
                     padding: `5px 15px`,
-                    fontSize: rhythm(0.45),
-                    fontWeight: 200,
+                    fontSize: rhythm(0.4),
                   }}
                 >
                   Read More →
@@ -115,6 +117,7 @@ class BlogIndex extends React.Component {
             <Link to={prevPage} rel="prev" style={{
               textDecoration: 'none',
               boxShadow: 'none',
+              color: `rgb(58, 65, 69)`
             }}>
               <strong>←</strong>
             </Link>
@@ -135,9 +138,8 @@ class BlogIndex extends React.Component {
                   textDecoration: 'none',
                   boxShadow: 'none',
                   color: i + 1 === currentPage ? '#ffffff' : '',
-                  // background: i + 1 === currentPage ? '#007acc' : '',
-                  background: i + 1 === currentPage ? 'black' : '',
-                  backgroundColor: i + 1 === currentPage ? `hsla(0,0%,0%,0.95)` : '',
+                  background: i + 1 === currentPage ? 'rgb(58, 65, 69)' : '',
+                  // backgroundColor: i + 1 === currentPage ? `hsla(0,0%,0%,0.95)` : '',
                 }}
               >
                 {i + 1}
@@ -153,7 +155,8 @@ class BlogIndex extends React.Component {
             >
             <Link to={nextPage} rel="next" style={{
               textDecoration: 'none',
-              boxShadow: 'none'
+              boxShadow: 'none',
+              color: `rgb(58, 65, 69)`
             }}>
               <strong>→</strong>
             </Link>
@@ -169,9 +172,9 @@ export default BlogIndex
 
 export const pageQuery = graphql`
   query blogPageQuery($skip: Int!, $limit: Int!) {
-    avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
+    avatar: file(absolutePath: { regex: "/author.jpg/" }) {
       childImageSharp {
-        fixed(width: 27, height: 27) {
+        fixed(width: 31, height: 31) {
           ...GatsbyImageSharpFixed
         }
       }

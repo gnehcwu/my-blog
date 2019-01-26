@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import 'prismjs/themes/prism-tomorrow.css'
+import 'prismjs/themes/prism.css'
 import Bio from '../components/Bio'
 import { rhythm, scale } from '../utils/typography'
 import { Span } from 'opentracing'
@@ -18,7 +18,9 @@ class Layout extends React.Component {
     const isPaginatedPath = pageNumber && Boolean(pageNumber.match(/^[0-9]+$/))
 
     return (
-      <div>
+      <div style={{
+        color: `rgb(58, 65, 69)`
+      }}>
         <div>
           <Bio />
         </div>

@@ -24,7 +24,8 @@ class BlogPostTemplate extends React.Component {
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title={post.frontmatter.title} description={post.excerpt} />
         <h2 style={{
-          marginBottom: `0.5rem`
+          marginBottom: `0.5rem`,
+          fontWeight: 400,
         }}>
           {post.frontmatter.title}
         </h2>
@@ -138,9 +139,9 @@ export default BlogPostTemplate
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
-    avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
+    avatar: file(absolutePath: { regex: "/author.jpg/" }) {
       childImageSharp {
-        fixed(width: 27, height: 27) {
+        fixed(width: 31, height: 31) {
           ...GatsbyImageSharpFixed
         }
       }
